@@ -4,7 +4,7 @@ const (
   HashSize = 64
 )
 
-func CalculateSimHash(input string) int64 {
+func CalculateSimHash(input string) uint64 {
   tokeniser := NewOverlappingStringTokeniser(4, 3)
   hashedTokens := getHashTokens(tokeniser.Tokenise(input))
   vector := make([]int, HashSize)
