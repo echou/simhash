@@ -1,10 +1,10 @@
 package simhash
 
 const (
-  HashSize = 32
+  HashSize = 64
 )
 
-func CalculateSimHash(input string) int {
+func CalculateSimHash(input string) int64 {
   tokeniser := NewOverlappingStringTokeniser(4, 3)
   hashedTokens := getHashTokens(tokeniser.Tokenise(input))
   vector := make([]int, HashSize)
@@ -14,7 +14,7 @@ func CalculateSimHash(input string) int {
 
   for _, v := range hashedTokens {
     for i, _ := range vector {
-      if isBitSet(uint32(v), uint32(i)) {
+      if isBitSet(uint64(v), uint64(i)) {
         vector[i] += 1
       } else {
         vector[i] -= 1
@@ -22,10 +22,10 @@ func CalculateSimHash(input string) int {
     }
   }
 
-  fingerprint := 0
+  fingerprint := uint64(0)
   for i, v := range vector {
     if v > 0 {
-      fingerprint += 1 << uint32(i)
+      fingerprint += 1 << uint64(i)
     }
   }
 
