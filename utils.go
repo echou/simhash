@@ -20,7 +20,7 @@ func isBitSet(b, pos uint32) bool {
   return (b & (1 << pos)) != 0
 }
 
-func GetHammingDistance(firstValue, secondValue int) int {
+func getHammingDistance(firstValue, secondValue int) int {
   hammingBits := firstValue ^ secondValue
   hammingValue := 0
   for i := 0; i < 32; i++ {
