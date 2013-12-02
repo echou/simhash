@@ -4,7 +4,7 @@ const (
   HashSize = 32
 )
 
-func calculateSimHash(input string) int {
+func CalculateSimHash(input string) int {
   tokeniser := NewOverlappingStringTokeniser(4, 3)
   hashedTokens := getHashTokens(tokeniser.Tokenise(input))
   vector := make([]int, HashSize)
@@ -33,7 +33,7 @@ func calculateSimHash(input string) int {
 }
 
 func GetLikenessValue(needle, haystack string) float64 {
-  needleSimHash := calculateSimHash(needle)
-  hayStackSimHash := calculateSimHash(haystack)
-  return float64(HashSize-getHammingDistance(needleSimHash, hayStackSimHash)) / float64(HashSize)
+  needleSimHash := CalculateSimHash(needle)
+  hayStackSimHash := CalculateSimHash(haystack)
+  return float64(HashSize-GetHammingDistance(needleSimHash, hayStackSimHash)) / float64(HashSize)
 }
